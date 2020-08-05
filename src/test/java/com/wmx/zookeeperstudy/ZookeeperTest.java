@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * 演示对 ZK 基本的增删改查，以及节点监听
@@ -27,6 +28,7 @@ public class ZookeeperTest {
     private static ZooKeeper zooKeeper = null;
     /**
      * 服务器连接地址，多个集群时，用逗号隔开，如：192.168.44.41:2181,192.168.44.42:2181,192.168.44.43:2181
+     * ZK 服务器默认对客户端监听端口为  2181.
      */
     private static String connectString = "192.168.116.128:2181";
 
@@ -218,9 +220,10 @@ public class ZookeeperTest {
             //节点【/app1】数据为【basic-web-service】，stat=【138,164,1596628145250,1596631359590,2,4,0,0,17,0,167
             System.out.printf("节点【%s】数据为【%s】，stat=【%s】%n", path, data, stat);
 
-//            Scanner scanner = new Scanner(System.in);
-//            String nextLine = scanner.nextLine();
-//            System.out.println(nextLine);
+            //下面是用线程阻塞，方便其它 zk 客户端操作节点时，看上面 new ZooKeeper 指定的监听器能否正常触发。
+            Scanner scanner = new Scanner(System.in);
+            String nextLine = scanner.nextLine();
+            System.out.println(nextLine);
 
         } catch (KeeperException e) {
             e.printStackTrace();
