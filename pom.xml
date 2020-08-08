@@ -25,7 +25,9 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
-        <dependency>
+        <!--因为 spring-boot-starter-web 依赖中已经有了 slf4j + logback 日志依赖，所以将 zk 依赖的日志全部排除了-->
+        <!--curator-recipes会依赖zookeeper，所以可以注释掉-->
+       <!-- <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
             <version>3.6.1</version>
@@ -43,6 +45,15 @@
                     <groupId>org.slf4j</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+-->
+        <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-recipes -->
+        <!--curator-recipes 内部依赖 curator-framework，curator-framework 依赖 curator-client-->
+        <!--curator-client 依赖 org.apache.zookeeper/zookeeper-->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>5.1.0</version>
         </dependency>
 
         <dependency>

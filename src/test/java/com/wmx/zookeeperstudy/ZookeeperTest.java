@@ -135,7 +135,7 @@ public class ZookeeperTest {
      * 1.2、如果父节点不存在，则抛出异常：NoNodeException
      * </p>
      * 2、data：节点的初始数据。数据的大小不能超出 1 MB（1048576字节），否则抛异常。
-     * 3、acl: 节点的 acl。OPEN_ACL_UNSAFE：表示这是一个完全开放的 ACL。
+     * 3、acl: 创建节点后节点的权限，OPEN_ACL_UNSAFE：表示这是一个完全开放的节点
      * 4、createMode：指定要创建的节点是短暂的还是持久的
      * <span>
      * 4.1、PERSISTENT: 永久节点，不带序列号
