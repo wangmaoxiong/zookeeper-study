@@ -60,10 +60,12 @@ public class ZookeeperTest {
                         /**默认 watch 监视只会生效一次，如果要想实现永久监听，则需要在上一次监听回调之后再次设置同样的监听
                          * getData 的 watch 为 true 相当于 zk 客户端命令 get -w path，节点值变化时自动触发
                          * getChildren 的 watch 为 true 相当于 zk 客户端命令 ls -w path，节点下的子节点新增获取删除时触发
+                         * 只要想重复监视的节点，都可以再次继续监视，比如 getData、getChildren、exists 等等
                          */
                         if (event.getPath() != null) {
                             zooKeeper.getData(event.getPath(), true, null);
                             zooKeeper.getChildren(event.getPath(), true);
+                            zooKeeper.exists(event.getPath(), true);
                         }
                     } catch (KeeperException e) {
                         e.printStackTrace();
