@@ -36,7 +36,7 @@ public class ZookeeperTest {
      * ZooKeeper(String connectString, int sessionTimeout, Watcher watcher)，初始化 ZooKeeper
      * connectString：服务器连接地址，多个集群时，用逗号隔开，如：192.168.44.41:2181,192.168.44.42:2181,192.168.44.43:2181
      * sessionTimeout：会话超时（毫秒）。在 sessionTimeout 内没有心跳检测，会话就标记为失效的
-     * watcher：设置观察者对象，接收节点变化通知。不监听时，可以传入 null
+     * watcher：设置观察者对象，接收节点变化通知。不监听时，可以传入 null。
      */
     @Before
     public void init() {
@@ -204,6 +204,7 @@ public class ZookeeperTest {
      * 2、如果监视（watch）为 true 且调用成功（不引发异常），则将在具有给定路径的节点上保留一个监视，
      * 3、监视将由在节点上修改数据操作触发，会自动触发 new ZooKeeper 时指定的监视器
      * 4、不存在指定路径时，抛出异常
+     * 5、stat 对象用于接收状态数据,不需要时可以传入 null.
      */
     @Test
     public void getData() {
